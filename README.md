@@ -76,19 +76,76 @@ Build a machine learning model to classify BRCA, LUAD, and PRAD based on gene ex
 | SFTPA1  | 34.84     |
 
 ### **Preprocessed Data Example**
-
+```plaintext
+   sample           primary_disease           KLK3   SFTPB  KLK2  SCGB2A2  SFTPA1
+   TCGA-2A-A8VL-01  prostate adenocarcinoma  19.16  1.02   17.69  0.00     1.84
+   TCGA-2A-A8VO-01  prostate adenocarcinoma  19.26  0.74   18.02  0.00     5.15
+   TCGA-2A-A8VT-01  prostate adenocarcinoma  16.86  0.80   16.22  0.00     0.80
+```
 
 ### **Code Snippet**
+
 ```python
 # Cleaning and Feature Selection
 cleaned_data = filtered_data.dropna(subset=gene_cols)
 top_genes = X.var().nlargest(100).index
 X_selected = X[top_genes]
 preprocessed_data = pd.concat([cleaned_data[['sample', 'primary_disease']], X_selected], axis=1)
-Cancer-Classification-Project/
-├── dataset_info.txt         # Dataset details and preprocessing notes
-├── Step2_DataLoading.ipynb  # Data loading and merging
-├── Step3_Preprocessing.ipynb # Preprocessing script
-└── README.md                # Project overview (you’re here!)
+```
+---
 
+### 🧰 **Tools & Technologies**
+- Python: Core language (v3.11).
+- Google Colab: Cloud-based coding environment.
+- **Libraries:**
+-pandas: Data manipulation.
+-scikit-learn: Feature selection and splitting.
+-GitHub: Version control and sharing.
+
+---
+
+### 📂 **Repository Structure**
+```
+Cancer-Classification-Project/
+├── dataset_info.txt                   # Dataset details and preprocessing notes
+├── Step2_3_DataLoading_Preprocessing.ipynb  # Data loading, merging, and preprocessing
+└── README.md                          # Project overview (you’re here!)
+```
+
+--- 
+
+### 🚀 **How to Run This Project**
+1. **Clone the Repo:**
 git clone https://github.com/morshedik/Cancer-Classification-Project.git
+
+2. **Open in Colab:**
+- Upload .ipynb files to Google Colab.
+- Mount Google Drive with your TCGA data folder.
+3. **Install Dependencies:**
+  ```python
+  !pip install pandas scikit-learn
+  ```
+4. **Run the Notebooks**: Run (``Step2_3_DataLoading_Preprocessing.ipynb``) to preprocess the data.
+
+---
+
+### 🌱 **Future Plans**
+
+- Train and optimize a logistic regression model.
+- Analyze gene importance for clinical insights.
+- Expand to additional cancer types or advanced models (e.g., random forest).
+
+### 🤝 **Get Involved!**
+
+I’m a **beginner** learning as I go—your feedback or collaboration would be amazing!
+
+- **Issues**: Spot a bug? Have a suggestion? Open an issue!
+- **Pull Requests**: Want to contribute? Feel free!
+- **Contact**: Reach me via [GitHub](https://github.com/morshedik) or [email](morshedik@gmail.com).
+
+### **🙏 Acknowledgments**
+- **TCGA**: For open-access genomic data.
+- **Google Colab**: For free cloud computing.
+- **Mentors**: Special thanks to my Grok AI mentor for step-by-step guidance.
+
+⭐ **Star this repo if you’re inspired! Together, we can make a dent in cancer research with data!**
