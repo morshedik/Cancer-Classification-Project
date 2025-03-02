@@ -43,8 +43,8 @@ Build a machine learning model to classify BRCA, LUAD, and PRAD based on gene ex
 - **Splitting**: 80% training (1,848 samples), 20% testing (463 samples).
 - **Next**: Train the model in Step 4!
 
-### **Step 4: Build and Train Model** ⏳
-- Plan: Train a logistic regression model on preprocessed data.
+### **Step 4: Build and Train Model** ✅
+- Trained a logistic regression model on preprocessed TCGA data using the top 100 most variable genes, achieving 100% accuracy on test data. This likely reflects strong biological signals (e.g., KLK3, SFTPB), but potential overfitting was evaluated with cross-validation, feature reduction, and regularization. Model and preprocessed data saved to Google Drive for Step 5 validation.
 
 ### **Step 5: Evaluate and Improve** ⏳
 - Assess accuracy and explore gene importance.
@@ -75,6 +75,10 @@ Build a machine learning model to classify BRCA, LUAD, and PRAD based on gene ex
 | SCGB2A2 | 35.46     |
 | SFTPA1  | 34.84     |
 
+### **Model Training Results**
+- Accuracy: Achieved 100% accuracy on both training and test sets, evaluated with 5-fold cross-validation (average 1.00 ± 0.00). This suggests perfect separation, likely driven by genes like KLK3 (high in PRAD) and SFTPB (high in LUAD).
+- Overfitting Checks: Conducted feature reduction (50 and 30 genes), scaling, regularization (C=0.01), and PCA (50 components), all maintaining 100% accuracy, indicating biological separability rather than overfitting. No sample or patient ID overlap found.
+
 ### **Preprocessed Data Example**
 ```plaintext
    sample           primary_disease           KLK3   SFTPB  KLK2  SCGB2A2  SFTPA1
@@ -92,6 +96,7 @@ top_genes = X.var().nlargest(100).index
 X_selected = X[top_genes]
 preprocessed_data = pd.concat([cleaned_data[['sample', 'primary_disease']], X_selected], axis=1)
 ```
+
 ---
 
 ### 🧰 **Tools & Technologies**
@@ -109,6 +114,7 @@ preprocessed_data = pd.concat([cleaned_data[['sample', 'primary_disease']], X_se
 Cancer-Classification-Project/
 ├── dataset_info.txt                   # Dataset details and preprocessing notes
 ├── Step2_3_DataLoading_Preprocessing.ipynb  # Data loading, merging, and preprocessing
+├── step4_ModelTraining.ipynb  #model training
 └── README.md                          # Project overview (you’re here!)
 ```
 
